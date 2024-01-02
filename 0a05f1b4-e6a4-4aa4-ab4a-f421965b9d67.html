@@ -1,0 +1,284 @@
+﻿<!DOCTYPE html>
+<html>
+	<head>
+		<title>OUTBUDDIES DX</title>
+		<meta name="viewport" content="width=device-width, initial-scale=0.55">
+		<style>
+body {
+  background: #24282f;                                /* main background color in case of no image */
+  font-family: 'Arial';                               /* font arial which should be readable */
+  Height:100%;                                        /* set width to 100% also needed for background */
+  margin:0px;                                         /* hide any margins */
+  background-size: cover;                             /* size background image without distortion along width and height */
+  background-repeat: no-repeat;                       /* no background repeat */
+  Background-attachment:fixed;                        /* needed to make background image behave properly */
+  overflow-y:hidden;                                  /* no normal overflow, only our containers (details & description) will overflow or have scrollbar * /
+}
+ 
+html {
+  height:100%;                                        /* need to set this to 100% to make the background behave propertly */
+}
+
+.title h2 {
+  padding-left: 25px;                                 /* left padding */
+  color: #ccc;                                        /* text color */
+  margin: 0;                                          /* no margins */
+  background-color: black;                            /* black background */
+  vertical-align: middle;                             /* align vertical middle */
+}
+
+.title img {
+	vertical-align: middle;                           /* images in title aligned vertical middle */
+}
+
+.title {
+	width: 100%;                                      /* title container width 100% */
+	grid-column: 1 / span 3;                          /* column 1 but spans 3 */
+    grid-row: 1;                                      /* row 1 */
+
+}
+.cards {                                              /* empty not used here */
+}
+
+.card {
+	display: grid;                                    /* container which is the grid */
+	grid-template-columns: min-content;               /* size columns to minimum content */
+	grid-template-rows: min-content min-content;      /* size rows to minimum content */
+	height: 100vh;                                    /* 100% viewport height */
+}
+
+.detailstitle{
+  grid-column: 1;                                     /* 1st column */
+  grid-row: 2;                                        /* 2nd row */
+  width: 350px;                                       /* fixed width set to same size as details */
+  padding-left: 10px;                                 /* some padding left */
+  padding-right: 10px;                                /* some padding right */
+}
+
+.details {
+  padding-left: 10px;                                 /* some padding left */
+  padding-right: 10px;                                /* some padding right */
+  color: #ccc;
+  grid-column: 1;                                      /* 1st column */
+  grid-row: 3;                                         /* 3rd row of grid */
+  width: 350px;                                        /* fixed width of details */
+  overflow-y: auto;                                     /* add vertical scrollbar if needed */
+  overflow-x:hidden;                                   /* don't overflow on x axis (no horz scrollbar) */
+ }
+ 
+.detailstitle h3,
+.descriptiontitle h3 {
+	border-bottom: 1px solid #ccc;                     /* titles of description details should have line under it */
+	padding: 5px;                                      /* add some padding */
+	color: #ccc;                                       /* text color of the titles */
+}
+
+.detailstable th, td {
+  border: 0px;                                         /* no borders on td, th elements */
+  color: #ccc;                                         /* details table text color */
+}
+
+.detailstable td {
+  text-align: left;                                    /* align text left */
+  vertical-align: top;                                 /* align top */
+}
+
+.detailstable {
+  width: 100%;                                         /* set to full width of details */
+  padding: 5px;                                        /* add some padding */
+}
+
+.details img {
+	max-width: 100%;                                   /* make sure images don't overflow in width on details */
+}
+
+.descriptiontitle {
+	grid-column: 2;                                    /* column 2 of grid */
+	grid-row: 2;                                       /* row 2 of grid */
+	padding-left: 10px;                                /* some padding left */
+	padding-right: 10px;                               /* some padding right */
+}
+
+
+.description {
+	color: #ccc;                                       /* text color */
+	grid-column: 2;                                    /* 2nd column of grid */
+	grid-row: 3;                                       /* 3rd row of grid */
+	overflow-y: auto;                                  /* overflow-y automatic (for adding scrollbar) */
+	overflow-x:hidden;                                 /* prevent horizontal scrollbar */
+	padding-left: 10px;                                /* some padding left */
+	padding-right: 10px;                               /* some padding right */
+}
+
+.description img {
+	max-width: 100%;                                   /* make sure images don't overflow in width to prevent scrollbars */
+}
+
+.MenuButton {
+  border: none;                                        /* Remove borders */
+  outline: none;                                       /* Remove outline */
+  background-color: #888;                              /* Set a background color */
+  color: #000;                                         /* Text color */
+  padding: 5px;                                        /* Some padding */
+  border-radius: 4px;                                  /* Rounded corners, border */
+  font-size: 20px;                                     /* Increase font size */
+  cursor:pointer;                                         /* Add a mouse pointer on hover */
+  margin-right: 20px;                                  /* to have some space on right side before next element */
+  -webkit-appearance: button;
+  -moz-appearance: button;
+  appearance: button;
+  text-decoration: none;
+}
+
+.MenuButton:hover {
+  background-color: #777;                              /* Add a dark-grey background on hover */
+  color: #CCC;                                         /* Text color */
+}
+
+a {
+ text-decoration: none;                                /* no text underline in links */
+}
+a:link {
+  color: #CCC;                                         /* unvisited link color */
+}
+a:visited {
+  color: #CCC;                                         /* visited link color */
+}
+a:hover {
+  color: #EEE;                                         /* mouse over link color */
+  text-decoration: underline;                          /* add text underline in links when mouse over */
+}
+a:active {
+  color: #CCC;                                         /* selected link color */
+}
+
+                                                       /* scrollbars W3C standard that is currently Firefox-only */
+* {
+  scrollbar-width: thin;                               /* small width */
+  scrollbar-color: #888 transparent;                   /* trackbar color + transparant background */
+}
+
+                                                       /* scrollbars on Chrome/Edge/Safari */
+*::-webkit-scrollbar {
+  width: 12px;                                         /* small width */
+}
+
+*::-webkit-scrollbar-track {
+  background: transparent;                             /* background color track */
+}
+
+*::-webkit-scrollbar-thumb {
+  background-color: #AAA;                              /* background */
+  border-radius: 20px;                                 /* rounded corner, border */
+  border: 3px solid #888;                              /* add the border */
+}
+
+		</style>
+	</head>
+	<body style="background-image: linear-gradient(to bottom, rgba(0,0,0,0.52), rgba(0,0,0,0.73)), url('0a05f1b4-e6a4-4aa4-ab4a-f421965b9d67/3b9a5d24-fe20-4721-8373-4eacdcb9d18b.jpg');">
+		<div class="cards">
+			<div class="card">
+				<div class="title">
+					<h2><button onclick="window.history.back()" class="MenuButton">Back</button><img Height="48" class="lozad" data-src="0a05f1b4-e6a4-4aa4-ab4a-f421965b9d67/77655944-bff2-490b-8073-acee34db2e21.ico"/> OUTBUDDIES DX</h2>
+				</div>
+				<div class="detailstitle">
+				<H3>Details</H3>
+				</div>
+				<div class="details">
+					<div style="overflow: auto;">
+						<TABLE class="detailstable">
+							<col style="width:50%" />
+							<col style="width:50%" />
+							<TR>
+								<TD style="text-align:center" Colspan="2"><img Height="175" class="lozad" data-src="0a05f1b4-e6a4-4aa4-ab4a-f421965b9d67/77655ae7-1e7a-472e-924e-f637d261dc98.jpg"/></TD>
+							</TR>
+							<TR>
+								<TD>Playtime</TD>
+								<TD>Not Played</TD>
+							</TR>
+							<TR>
+								<TD>Last Activity</TD>
+								<TD><a href="#quicklink-Never">Never</a> </TD>
+							</TR>
+							<TR>
+								<TD>Added</TD>
+								<TD><a href="#quicklink-12/30/2023">12/30/2023</a> 6:40:47</TD>
+							</TR>
+							<TR>
+								<TD>Modified</TD>
+								<TD><a href="#quicklink-12/31/2023">12/31/2023</a> 8:33:28</TD>
+							</TR>
+							<TR>
+								<TD>Completion Status</TD>
+								<TD><a href="#quicklink-Not Played">Not Played</a></TD>
+							</TR>
+							<TR>
+								<TD>Library</TD>
+								<TD><a href="#quicklink-Steam">Steam</a></TD>
+							</TR>
+							<TR>
+								<TD>Source</TD>
+								<TD><a href="#quicklink-Steam">Steam</a></TD>
+							</TR>
+							<TR>
+								<TD>Platform</TD>
+								<TD><a href="#quicklink-PC (Windows)">PC (Windows)</a><br/></TD>
+							</TR>
+							<TR>
+								<TD>Release Date</TD>
+								<TD><a href="#quicklink-10/15/2019">10/15/2019</a> </TD>
+							</TR>
+							<TR>
+								<TD>Community Score</TD>
+								<TD><a href="#quicklink-70">70</a></TD>
+							</TR>
+							<TR>
+								<TD>Critic Score</TD>
+								<TD><a href="#quicklink-"></a></TD>
+							</TR>
+							<TR>
+								<TD>User Score</TD>
+								<TD><a href="#quicklink-"></a></TD>
+							</TR>
+							<TR>
+								<TD>Genre</TD>
+								<TD><a href="#quicklink-Adventure">Adventure</a><br/><a href="#quicklink-Indie">Indie</a><br/><a href="#quicklink-Platform">Platform</a><br/><a href="#quicklink-Puzzle">Puzzle</a><br/></TD>
+							</TR>
+							<TR>
+								<TD>Developer</TD>
+								<TD><a href="#quicklink-Julian Laufer">Julian Laufer</a><br/></TD>
+							</TR>
+							<TR>
+								<TD>Publisher</TD>
+								<TD><a href="#quicklink-Headup Games">Headup Games</a><br/></TD>
+							</TR>
+							<TR>
+								<TD>Feature</TD>
+								<TD><a href="#quicklink-Co-Operative">Co-Operative</a><br/><a href="#quicklink-Multiplayer">Multiplayer</a><br/><a href="#quicklink-Single Player">Single Player</a><br/></TD>
+							</TR>
+							<TR>
+								<TD>Links</TD>
+								<TD><a href="http://outbuddies.com/" target="_blank">Official</a><br/><a href="https://twitter.com/IndieJGames" target="_blank">Twitter</a><br/><a href="https://www.facebook.com/Outbuddies/" target="_blank">Facebook</a><br/><a href="https://www.youtube.com/channel/UCabcIis21hpxlr9Nqwp2uvA" target="_blank">YouTube</a><br/><a href="https://store.steampowered.com/app/1083310" target="_blank">Steam</a><br/><a href="https://www.gog.com/game/outbuddies" target="_blank">GOG</a><br/><a href="https://www.twitch.tv/directory/game/Outbuddies" target="_blank">Twitch</a><br/></TD>
+							</TR>
+							<TR>
+								<TD>Tag</TD>
+								<TD></TD>
+							</TR>
+						</TABLE>
+					</div>
+				</div>
+				<div class="descriptiontitle">
+					<H3>Description</H3>
+				</div>
+				<div class="description">
+					<img src="https://cdn.akamai.steamstatic.com/steam/apps/1083310/extras/steam_boss_razoth.gif?t=1676465564" /><br><br><br><img src="https://cdn.akamai.steamstatic.com/steam/apps/1083310/extras/outbuddies_steam_description.png?t=1676465564" /><br>Enter Bahlam, a sunken city of the Old Gods, located deep in the South Atlantic Ocean. Following a shipwreck, adventurer and maritime archaeologist Nikolay Bernstein regains consciousness 36.000 feet under the sea. He's severely wounded and unwillingly connected to a supernatural Buddy-unit. Searching for answers about his displacement our main protagonist digs deep into the lost undercity, gradually realizing an ominous presence hollowing in its shadowed caverns.<br><br><br><img src="https://cdn.akamai.steamstatic.com/steam/apps/1083310/extras/outbuddies_steam_meet_the_wozan.png?t=1676465564" /><br>On your journey home you will share your fate with a friendly tribe of mining creatures, the Wozan, who fear the Old Gods and strive to get back to the surface since their ancestors had been enslaved 5000 years ago. Some of them were able to flee and founded secret colonies deep inside the sunken ruins, others are still exploited by the hostile creatures that have overtaken the city since the Old Gods suddenly disappeared.<br><br><br><img src="https://cdn.akamai.steamstatic.com/steam/apps/1083310/extras/steam_tortune_enemy.gif?t=1676465564" /><br><br><br><img src="https://cdn.akamai.steamstatic.com/steam/apps/1083310/extras/outbuddies_steam_open_world.png?t=1676465564" /><br>Experience real non-linear Metroidvania gameplay and uncover five distinct areas, all with remarkable puzzles, environmental hazards, epic boss encounters and captured Wozan to uncage. Your Buddy unit will procedurally map the area and function as a handy quality of life tool that can be controlled at will to manipulate your surroundings using various abilities like hacking, scanning, and telekinesis.<br><br><br><img src="https://cdn.akamai.steamstatic.com/steam/apps/1083310/extras/outbuddies_steam_mech_skill.png?t=1676465564" /><br>Explore Bahlam with high freedom of movement like climbing, crawling and diving right from the start. As you progress your set of options will expand by discovering ancient weapon systems, suit upgrades and hacking protocols for your droid. All gear will be carefully balanced in terms of combat abilities and has to be used selectively to overcome specific hazards and puzzles.<br><br><br><img src="https://cdn.akamai.steamstatic.com/steam/apps/1083310/extras/steam_boss_moxan.gif?t=1676465564" /><br><br><br><img src="https://cdn.akamai.steamstatic.com/steam/apps/1083310/extras/outbuddies_steam_local_coop.png?t=1676465564" /><br>The local Co-Op option invites a second player to explore and experience this adventure together by taking control over the invincible Buddy unit. Support each other on your journey home, solve puzzles and overcome Bahlam's hostile maze. This will also provide an opportunity for team-speedrunning as a very unique take on the scene.<br><br><br><img src="https://cdn.akamai.steamstatic.com/steam/apps/1083310/extras/outbuddies_steam_qa_standards.png?t=1676465564" /><br>Outbuddies DX is a humble budget project but that does not mean it will run poorly or lack the quality of life features. All pixel art will scale crisp and free of distortion artifacts to your native screen resolution. The game runs at 60 FPS. A hybrid physics engine ensures realistic accelerations and object movements while maintaining the pixel perfect control of the old classics. Enemy and boss AIs are carefully crafted and will kick your ass in a Souls-like manner! Outbuddies DX also supports various mappable devices like keyboard, mouse and multiple gamepads to ensure you´re able to play with your preferred setup. We listen to feedback, so shoot us a mail anytime!<br><br><br><img src="https://cdn.akamai.steamstatic.com/steam/apps/1083310/extras/steam_wozan_prison.gif?t=1676465564" /><br><br><br><img src="https://cdn.akamai.steamstatic.com/steam/apps/1083310/extras/outbuddies_steam_key_features.png?t=1676465564" /><br><ul class="bb_ul"><li>Explore an open vibrant fantasy world<br></li><li>Real Metroidvania gameplay with lots of gear, puzzles and Easter eggs<br></li><li>Unique dual-hero scheme with local Co-Op support<br></li><li>Epic boss battles &amp; believable enemy AIs<br></li><li>Intriguing narrative and memorable characters<br></li><li>High freedom of movement @ 60 FPS<br></li><li>Handcrafted pixel art with distortion-free scaling to your native display resolution<br></li><li>Support for various input devices &amp; key rebinding<br></li><li>Original soundtrack by OGRE music</li></ul>
+				</div>
+			</div>
+		</div>
+		<script src="https://cdn.jsdelivr.net/npm/lozad/dist/lozad.min.js"></script>
+		<script>
+			const observer = lozad(); // lazy loads elements with default selector as '.lozad'
+			observer.observe();
+		</script>
+	</body>	
+</html>

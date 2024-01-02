@@ -1,0 +1,284 @@
+﻿<!DOCTYPE html>
+<html>
+	<head>
+		<title>Due Process</title>
+		<meta name="viewport" content="width=device-width, initial-scale=0.55">
+		<style>
+body {
+  background: #24282f;                                /* main background color in case of no image */
+  font-family: 'Arial';                               /* font arial which should be readable */
+  Height:100%;                                        /* set width to 100% also needed for background */
+  margin:0px;                                         /* hide any margins */
+  background-size: cover;                             /* size background image without distortion along width and height */
+  background-repeat: no-repeat;                       /* no background repeat */
+  Background-attachment:fixed;                        /* needed to make background image behave properly */
+  overflow-y:hidden;                                  /* no normal overflow, only our containers (details & description) will overflow or have scrollbar * /
+}
+ 
+html {
+  height:100%;                                        /* need to set this to 100% to make the background behave propertly */
+}
+
+.title h2 {
+  padding-left: 25px;                                 /* left padding */
+  color: #ccc;                                        /* text color */
+  margin: 0;                                          /* no margins */
+  background-color: black;                            /* black background */
+  vertical-align: middle;                             /* align vertical middle */
+}
+
+.title img {
+	vertical-align: middle;                           /* images in title aligned vertical middle */
+}
+
+.title {
+	width: 100%;                                      /* title container width 100% */
+	grid-column: 1 / span 3;                          /* column 1 but spans 3 */
+    grid-row: 1;                                      /* row 1 */
+
+}
+.cards {                                              /* empty not used here */
+}
+
+.card {
+	display: grid;                                    /* container which is the grid */
+	grid-template-columns: min-content;               /* size columns to minimum content */
+	grid-template-rows: min-content min-content;      /* size rows to minimum content */
+	height: 100vh;                                    /* 100% viewport height */
+}
+
+.detailstitle{
+  grid-column: 1;                                     /* 1st column */
+  grid-row: 2;                                        /* 2nd row */
+  width: 350px;                                       /* fixed width set to same size as details */
+  padding-left: 10px;                                 /* some padding left */
+  padding-right: 10px;                                /* some padding right */
+}
+
+.details {
+  padding-left: 10px;                                 /* some padding left */
+  padding-right: 10px;                                /* some padding right */
+  color: #ccc;
+  grid-column: 1;                                      /* 1st column */
+  grid-row: 3;                                         /* 3rd row of grid */
+  width: 350px;                                        /* fixed width of details */
+  overflow-y: auto;                                     /* add vertical scrollbar if needed */
+  overflow-x:hidden;                                   /* don't overflow on x axis (no horz scrollbar) */
+ }
+ 
+.detailstitle h3,
+.descriptiontitle h3 {
+	border-bottom: 1px solid #ccc;                     /* titles of description details should have line under it */
+	padding: 5px;                                      /* add some padding */
+	color: #ccc;                                       /* text color of the titles */
+}
+
+.detailstable th, td {
+  border: 0px;                                         /* no borders on td, th elements */
+  color: #ccc;                                         /* details table text color */
+}
+
+.detailstable td {
+  text-align: left;                                    /* align text left */
+  vertical-align: top;                                 /* align top */
+}
+
+.detailstable {
+  width: 100%;                                         /* set to full width of details */
+  padding: 5px;                                        /* add some padding */
+}
+
+.details img {
+	max-width: 100%;                                   /* make sure images don't overflow in width on details */
+}
+
+.descriptiontitle {
+	grid-column: 2;                                    /* column 2 of grid */
+	grid-row: 2;                                       /* row 2 of grid */
+	padding-left: 10px;                                /* some padding left */
+	padding-right: 10px;                               /* some padding right */
+}
+
+
+.description {
+	color: #ccc;                                       /* text color */
+	grid-column: 2;                                    /* 2nd column of grid */
+	grid-row: 3;                                       /* 3rd row of grid */
+	overflow-y: auto;                                  /* overflow-y automatic (for adding scrollbar) */
+	overflow-x:hidden;                                 /* prevent horizontal scrollbar */
+	padding-left: 10px;                                /* some padding left */
+	padding-right: 10px;                               /* some padding right */
+}
+
+.description img {
+	max-width: 100%;                                   /* make sure images don't overflow in width to prevent scrollbars */
+}
+
+.MenuButton {
+  border: none;                                        /* Remove borders */
+  outline: none;                                       /* Remove outline */
+  background-color: #888;                              /* Set a background color */
+  color: #000;                                         /* Text color */
+  padding: 5px;                                        /* Some padding */
+  border-radius: 4px;                                  /* Rounded corners, border */
+  font-size: 20px;                                     /* Increase font size */
+  cursor:pointer;                                         /* Add a mouse pointer on hover */
+  margin-right: 20px;                                  /* to have some space on right side before next element */
+  -webkit-appearance: button;
+  -moz-appearance: button;
+  appearance: button;
+  text-decoration: none;
+}
+
+.MenuButton:hover {
+  background-color: #777;                              /* Add a dark-grey background on hover */
+  color: #CCC;                                         /* Text color */
+}
+
+a {
+ text-decoration: none;                                /* no text underline in links */
+}
+a:link {
+  color: #CCC;                                         /* unvisited link color */
+}
+a:visited {
+  color: #CCC;                                         /* visited link color */
+}
+a:hover {
+  color: #EEE;                                         /* mouse over link color */
+  text-decoration: underline;                          /* add text underline in links when mouse over */
+}
+a:active {
+  color: #CCC;                                         /* selected link color */
+}
+
+                                                       /* scrollbars W3C standard that is currently Firefox-only */
+* {
+  scrollbar-width: thin;                               /* small width */
+  scrollbar-color: #888 transparent;                   /* trackbar color + transparant background */
+}
+
+                                                       /* scrollbars on Chrome/Edge/Safari */
+*::-webkit-scrollbar {
+  width: 12px;                                         /* small width */
+}
+
+*::-webkit-scrollbar-track {
+  background: transparent;                             /* background color track */
+}
+
+*::-webkit-scrollbar-thumb {
+  background-color: #AAA;                              /* background */
+  border-radius: 20px;                                 /* rounded corner, border */
+  border: 3px solid #888;                              /* add the border */
+}
+
+		</style>
+	</head>
+	<body style="background-image: linear-gradient(to bottom, rgba(0,0,0,0.52), rgba(0,0,0,0.73)), url('dc3da794-b557-4475-812e-860ebc341db0/f099a37e-e988-4b33-856f-97e0e9655fa4.jpg');">
+		<div class="cards">
+			<div class="card">
+				<div class="title">
+					<h2><button onclick="window.history.back()" class="MenuButton">Back</button><img Height="48" class="lozad" data-src="dc3da794-b557-4475-812e-860ebc341db0/5860a2ab-1f8f-460f-9678-a0bdc8fa909d.ico"/> Due Process</h2>
+				</div>
+				<div class="detailstitle">
+				<H3>Details</H3>
+				</div>
+				<div class="details">
+					<div style="overflow: auto;">
+						<TABLE class="detailstable">
+							<col style="width:50%" />
+							<col style="width:50%" />
+							<TR>
+								<TD style="text-align:center" Colspan="2"><img Height="175" class="lozad" data-src="dc3da794-b557-4475-812e-860ebc341db0/cded31ed-459e-482c-8388-78acd2508d2d.jpg"/></TD>
+							</TR>
+							<TR>
+								<TD>Playtime</TD>
+								<TD>Not Played</TD>
+							</TR>
+							<TR>
+								<TD>Last Activity</TD>
+								<TD><a href="#quicklink-Never">Never</a> </TD>
+							</TR>
+							<TR>
+								<TD>Added</TD>
+								<TD><a href="#quicklink-12/30/2023">12/30/2023</a> 6:40:47</TD>
+							</TR>
+							<TR>
+								<TD>Modified</TD>
+								<TD><a href="#quicklink-12/31/2023">12/31/2023</a> 8:33:45</TD>
+							</TR>
+							<TR>
+								<TD>Completion Status</TD>
+								<TD><a href="#quicklink-Not Played">Not Played</a></TD>
+							</TR>
+							<TR>
+								<TD>Library</TD>
+								<TD><a href="#quicklink-Steam">Steam</a></TD>
+							</TR>
+							<TR>
+								<TD>Source</TD>
+								<TD><a href="#quicklink-Steam">Steam</a></TD>
+							</TR>
+							<TR>
+								<TD>Platform</TD>
+								<TD><a href="#quicklink-PC (Windows)">PC (Windows)</a><br/></TD>
+							</TR>
+							<TR>
+								<TD>Release Date</TD>
+								<TD><a href="#quicklink-11/3/2020">11/3/2020</a> </TD>
+							</TR>
+							<TR>
+								<TD>Community Score</TD>
+								<TD><a href="#quicklink-"></a></TD>
+							</TR>
+							<TR>
+								<TD>Critic Score</TD>
+								<TD><a href="#quicklink-"></a></TD>
+							</TR>
+							<TR>
+								<TD>User Score</TD>
+								<TD><a href="#quicklink-"></a></TD>
+							</TR>
+							<TR>
+								<TD>Genre</TD>
+								<TD><a href="#quicklink-Indie">Indie</a><br/><a href="#quicklink-Shooter">Shooter</a><br/></TD>
+							</TR>
+							<TR>
+								<TD>Developer</TD>
+								<TD><a href="#quicklink-Giant Enemy Crab">Giant Enemy Crab</a><br/></TD>
+							</TR>
+							<TR>
+								<TD>Publisher</TD>
+								<TD><a href="#quicklink-Giant Enemy Crab">Giant Enemy Crab</a><br/></TD>
+							</TR>
+							<TR>
+								<TD>Feature</TD>
+								<TD><a href="#quicklink-Multiplayer">Multiplayer</a><br/></TD>
+							</TR>
+							<TR>
+								<TD>Links</TD>
+								<TD><a href="https://store.steampowered.com/app/753650" target="_blank">Steam</a><br/><a href="http://dueprocess.gg" target="_blank">Official</a><br/><a href="https://discord.gg/invite/cE5XyBM" target="_blank">Discord</a><br/><a href="https://www.youtube.com/channel/UCmwqAU7AUVPeNy6iKPqkEYQ" target="_blank">YouTube</a><br/><a href="https://www.facebook.com/dueprocessgame" target="_blank">Facebook</a><br/><a href="https://twitter.com/EnemyCrabGames" target="_blank">Twitter</a><br/><a href="https://www.reddit.com/r/dueprocess" target="_blank">Reddit</a><br/><a href="https://www.twitch.tv/directory/game/Due%20Process" target="_blank">Twitch</a><br/></TD>
+							</TR>
+							<TR>
+								<TD>Tag</TD>
+								<TD></TD>
+							</TR>
+						</TABLE>
+					</div>
+				</div>
+				<div class="descriptiontitle">
+					<H3>Description</H3>
+				</div>
+				<div class="description">
+					<a href="https://steamcommunity.com/linkfilter/?u=http%3A%2F%2Fdiscord.gg%2Fdueprocess" target="_blank" rel=" noopener"  ><img src="https://cdn.akamai.steamstatic.com/steam/apps/753650/extras/dp_banner_discord.jpg?t=1696532794" /></a><br><br><strong>DUE PROCESS</strong> is a tactical FPS where tactics finally matter. <strong>Planning &amp; teamwork</strong> are essential for victory because every map is<strong> procedurally generated</strong>. You'll be faced with a new challenge every time you play.<br><img src="https://cdn.akamai.steamstatic.com/steam/apps/753650/extras/titles_01_maps.png?t=1696532794" /><br><img src="https://cdn.akamai.steamstatic.com/steam/apps/753650/extras/PROCGEN.gif?t=1696532794" /><br>Fresh maps make Due Process great. Levels are built in-house via a procedurally assisted level generation process and are <strong>delivered weekly via steam update</strong>, which means you won't be playing on the same stale level. Our level designers edit each level before it goes out and are constantly trying new concepts.<br><img src="https://cdn.akamai.steamstatic.com/steam/apps/753650/extras/titles_02_plan.png?t=1696532794" /><br><img src="https://cdn.akamai.steamstatic.com/steam/apps/753650/extras/MAP.gif?t=1696532794" /><br><strong>Teamwork starts with a goal. </strong>Discuss your strategy over voice chat, and use the <strong>planning phase</strong> to draw up a plan of attack. Deploy your assets wisely over the course of three rounds, as anything fielded from your armory won't come back if destroyed or lost. <br><img src="https://cdn.akamai.steamstatic.com/steam/apps/753650/extras/titles_03_execute.png?t=1696532794" /><br><img src="https://cdn.akamai.steamstatic.com/steam/apps/753650/extras/Execute.gif?t=1696532794" /><br><strong>No plan survives first contact.</strong> The plan is a start, but you're going to have to think on your feet and coordinate with your team when things go awry. Getting your teammate to open fire to cover your footsteps just might secure you the element of surprise. <br><img src="https://cdn.akamai.steamstatic.com/steam/apps/753650/extras/titles_04_twosides.png?t=1696532794" /><br><img src="https://cdn.akamai.steamstatic.com/steam/apps/753650/extras/team_banner.jpg?t=1696532794" /><br>Play as two distinct factions with radically different playstyles and capabilities. Asymmetric warfare at its finest.<br><img src="https://cdn.akamai.steamstatic.com/steam/apps/753650/extras/titles_05_argus.png?t=1696532794" /><br><img src="https://cdn.akamai.steamstatic.com/steam/apps/753650/extras/vault_breach_full.gif?t=1696532794" /><br>A corporate military force contracted with enforcing indefinite martial law. Armed with the best tactical gear and weapons for a CQB environment. <strong>Speed, surprise, and violence of action</strong> are the essential elements of good execution. Once a plan is made, move forward with purpose, either by systematically eliminating the opposition room by room, or by striking swiftly at the heart of the defense.<br><img src="https://cdn.akamai.steamstatic.com/steam/apps/753650/extras/titles_06_defenders.png?t=1696532794" /><br><img src="https://cdn.akamai.steamstatic.com/steam/apps/753650/extras/DEFENSE.gif?t=1696532794" /><br>A rag-tag band of outlaws who oppose the corporations by any means necessary. Their weapons and gear are relics and rudimentary, but are not to be underestimated. <strong>Cunning is their strength</strong>. Anticipate what the enemy is planning, then set up the kill zone. Lay traps, coordinate crossfire with your team, and exploit breaks in the attack to flank the enemy and bring a decisive end to the fight.<br><br><a href="https://steamcommunity.com/linkfilter/?u=https%3A%2F%2Ftrello.com%2Fb%2FbNPEji7l%2Fdue-process-roadmap" target="_blank" rel=" noopener"  ><img src="https://cdn.akamai.steamstatic.com/steam/apps/753650/extras/steam_roadmap_trellolink.png?t=1696532794" /></a>
+				</div>
+			</div>
+		</div>
+		<script src="https://cdn.jsdelivr.net/npm/lozad/dist/lozad.min.js"></script>
+		<script>
+			const observer = lozad(); // lazy loads elements with default selector as '.lozad'
+			observer.observe();
+		</script>
+	</body>	
+</html>

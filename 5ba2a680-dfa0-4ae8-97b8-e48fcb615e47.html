@@ -1,0 +1,284 @@
+﻿<!DOCTYPE html>
+<html>
+	<head>
+		<title>FINAL FANTASY XIV Online</title>
+		<meta name="viewport" content="width=device-width, initial-scale=0.55">
+		<style>
+body {
+  background: #24282f;                                /* main background color in case of no image */
+  font-family: 'Arial';                               /* font arial which should be readable */
+  Height:100%;                                        /* set width to 100% also needed for background */
+  margin:0px;                                         /* hide any margins */
+  background-size: cover;                             /* size background image without distortion along width and height */
+  background-repeat: no-repeat;                       /* no background repeat */
+  Background-attachment:fixed;                        /* needed to make background image behave properly */
+  overflow-y:hidden;                                  /* no normal overflow, only our containers (details & description) will overflow or have scrollbar * /
+}
+ 
+html {
+  height:100%;                                        /* need to set this to 100% to make the background behave propertly */
+}
+
+.title h2 {
+  padding-left: 25px;                                 /* left padding */
+  color: #ccc;                                        /* text color */
+  margin: 0;                                          /* no margins */
+  background-color: black;                            /* black background */
+  vertical-align: middle;                             /* align vertical middle */
+}
+
+.title img {
+	vertical-align: middle;                           /* images in title aligned vertical middle */
+}
+
+.title {
+	width: 100%;                                      /* title container width 100% */
+	grid-column: 1 / span 3;                          /* column 1 but spans 3 */
+    grid-row: 1;                                      /* row 1 */
+
+}
+.cards {                                              /* empty not used here */
+}
+
+.card {
+	display: grid;                                    /* container which is the grid */
+	grid-template-columns: min-content;               /* size columns to minimum content */
+	grid-template-rows: min-content min-content;      /* size rows to minimum content */
+	height: 100vh;                                    /* 100% viewport height */
+}
+
+.detailstitle{
+  grid-column: 1;                                     /* 1st column */
+  grid-row: 2;                                        /* 2nd row */
+  width: 350px;                                       /* fixed width set to same size as details */
+  padding-left: 10px;                                 /* some padding left */
+  padding-right: 10px;                                /* some padding right */
+}
+
+.details {
+  padding-left: 10px;                                 /* some padding left */
+  padding-right: 10px;                                /* some padding right */
+  color: #ccc;
+  grid-column: 1;                                      /* 1st column */
+  grid-row: 3;                                         /* 3rd row of grid */
+  width: 350px;                                        /* fixed width of details */
+  overflow-y: auto;                                     /* add vertical scrollbar if needed */
+  overflow-x:hidden;                                   /* don't overflow on x axis (no horz scrollbar) */
+ }
+ 
+.detailstitle h3,
+.descriptiontitle h3 {
+	border-bottom: 1px solid #ccc;                     /* titles of description details should have line under it */
+	padding: 5px;                                      /* add some padding */
+	color: #ccc;                                       /* text color of the titles */
+}
+
+.detailstable th, td {
+  border: 0px;                                         /* no borders on td, th elements */
+  color: #ccc;                                         /* details table text color */
+}
+
+.detailstable td {
+  text-align: left;                                    /* align text left */
+  vertical-align: top;                                 /* align top */
+}
+
+.detailstable {
+  width: 100%;                                         /* set to full width of details */
+  padding: 5px;                                        /* add some padding */
+}
+
+.details img {
+	max-width: 100%;                                   /* make sure images don't overflow in width on details */
+}
+
+.descriptiontitle {
+	grid-column: 2;                                    /* column 2 of grid */
+	grid-row: 2;                                       /* row 2 of grid */
+	padding-left: 10px;                                /* some padding left */
+	padding-right: 10px;                               /* some padding right */
+}
+
+
+.description {
+	color: #ccc;                                       /* text color */
+	grid-column: 2;                                    /* 2nd column of grid */
+	grid-row: 3;                                       /* 3rd row of grid */
+	overflow-y: auto;                                  /* overflow-y automatic (for adding scrollbar) */
+	overflow-x:hidden;                                 /* prevent horizontal scrollbar */
+	padding-left: 10px;                                /* some padding left */
+	padding-right: 10px;                               /* some padding right */
+}
+
+.description img {
+	max-width: 100%;                                   /* make sure images don't overflow in width to prevent scrollbars */
+}
+
+.MenuButton {
+  border: none;                                        /* Remove borders */
+  outline: none;                                       /* Remove outline */
+  background-color: #888;                              /* Set a background color */
+  color: #000;                                         /* Text color */
+  padding: 5px;                                        /* Some padding */
+  border-radius: 4px;                                  /* Rounded corners, border */
+  font-size: 20px;                                     /* Increase font size */
+  cursor:pointer;                                         /* Add a mouse pointer on hover */
+  margin-right: 20px;                                  /* to have some space on right side before next element */
+  -webkit-appearance: button;
+  -moz-appearance: button;
+  appearance: button;
+  text-decoration: none;
+}
+
+.MenuButton:hover {
+  background-color: #777;                              /* Add a dark-grey background on hover */
+  color: #CCC;                                         /* Text color */
+}
+
+a {
+ text-decoration: none;                                /* no text underline in links */
+}
+a:link {
+  color: #CCC;                                         /* unvisited link color */
+}
+a:visited {
+  color: #CCC;                                         /* visited link color */
+}
+a:hover {
+  color: #EEE;                                         /* mouse over link color */
+  text-decoration: underline;                          /* add text underline in links when mouse over */
+}
+a:active {
+  color: #CCC;                                         /* selected link color */
+}
+
+                                                       /* scrollbars W3C standard that is currently Firefox-only */
+* {
+  scrollbar-width: thin;                               /* small width */
+  scrollbar-color: #888 transparent;                   /* trackbar color + transparant background */
+}
+
+                                                       /* scrollbars on Chrome/Edge/Safari */
+*::-webkit-scrollbar {
+  width: 12px;                                         /* small width */
+}
+
+*::-webkit-scrollbar-track {
+  background: transparent;                             /* background color track */
+}
+
+*::-webkit-scrollbar-thumb {
+  background-color: #AAA;                              /* background */
+  border-radius: 20px;                                 /* rounded corner, border */
+  border: 3px solid #888;                              /* add the border */
+}
+
+		</style>
+	</head>
+	<body style="background-image: linear-gradient(to bottom, rgba(0,0,0,0.52), rgba(0,0,0,0.73)), url('5ba2a680-dfa0-4ae8-97b8-e48fcb615e47/ddc90078-9392-496d-99ee-8c31c22047c6.jpg');">
+		<div class="cards">
+			<div class="card">
+				<div class="title">
+					<h2><button onclick="window.history.back()" class="MenuButton">Back</button><img Height="48" class="lozad" data-src="5ba2a680-dfa0-4ae8-97b8-e48fcb615e47/4fb43a2c-5193-4719-a55b-41d942ce1bac.ico"/> FINAL FANTASY XIV Online</h2>
+				</div>
+				<div class="detailstitle">
+				<H3>Details</H3>
+				</div>
+				<div class="details">
+					<div style="overflow: auto;">
+						<TABLE class="detailstable">
+							<col style="width:50%" />
+							<col style="width:50%" />
+							<TR>
+								<TD style="text-align:center" Colspan="2"><img Height="175" class="lozad" data-src="5ba2a680-dfa0-4ae8-97b8-e48fcb615e47/0b3cdd3e-f9f4-4607-b73e-0d083e319a9b.jpg"/></TD>
+							</TR>
+							<TR>
+								<TD>Playtime</TD>
+								<TD>1d 2h 32m 0s</TD>
+							</TR>
+							<TR>
+								<TD>Last Activity</TD>
+								<TD><a href="#quicklink-Never">Never</a> </TD>
+							</TR>
+							<TR>
+								<TD>Added</TD>
+								<TD><a href="#quicklink-12/30/2023">12/30/2023</a> 6:40:46</TD>
+							</TR>
+							<TR>
+								<TD>Modified</TD>
+								<TD><a href="#quicklink-12/30/2023">12/30/2023</a> 6:49:02</TD>
+							</TR>
+							<TR>
+								<TD>Completion Status</TD>
+								<TD><a href="#quicklink-Played">Played</a></TD>
+							</TR>
+							<TR>
+								<TD>Library</TD>
+								<TD><a href="#quicklink-Steam">Steam</a></TD>
+							</TR>
+							<TR>
+								<TD>Source</TD>
+								<TD><a href="#quicklink-Steam">Steam</a></TD>
+							</TR>
+							<TR>
+								<TD>Platform</TD>
+								<TD><a href="#quicklink-PC (Windows)">PC (Windows)</a><br/></TD>
+							</TR>
+							<TR>
+								<TD>Release Date</TD>
+								<TD><a href="#quicklink-8/27/2013">8/27/2013</a> </TD>
+							</TR>
+							<TR>
+								<TD>Community Score</TD>
+								<TD><a href="#quicklink-81">81</a></TD>
+							</TR>
+							<TR>
+								<TD>Critic Score</TD>
+								<TD><a href="#quicklink-85">85</a></TD>
+							</TR>
+							<TR>
+								<TD>User Score</TD>
+								<TD><a href="#quicklink-"></a></TD>
+							</TR>
+							<TR>
+								<TD>Genre</TD>
+								<TD><a href="#quicklink-Adventure">Adventure</a><br/><a href="#quicklink-Role-playing (RPG)">Role-playing (RPG)</a><br/><a href="#quicklink-Strategy">Strategy</a><br/></TD>
+							</TR>
+							<TR>
+								<TD>Developer</TD>
+								<TD></TD>
+							</TR>
+							<TR>
+								<TD>Publisher</TD>
+								<TD><a href="#quicklink-Square Enix">Square Enix</a><br/></TD>
+							</TR>
+							<TR>
+								<TD>Feature</TD>
+								<TD><a href="#quicklink-Co-Operative">Co-Operative</a><br/><a href="#quicklink-Massively Multiplayer Online (MMO)">Massively Multiplayer Online (MMO)</a><br/><a href="#quicklink-Multiplayer">Multiplayer</a><br/><a href="#quicklink-Single Player">Single Player</a><br/></TD>
+							</TR>
+							<TR>
+								<TD>Links</TD>
+								<TD><a href="http://www.finalfantasyxiv.com/" target="_blank">Official</a><br/><a href="https://store.steampowered.com/app/39210" target="_blank">Steam</a><br/><a href="https://www.reddit.com/r/ffxiv" target="_blank">Reddit</a><br/><a href="https://en.wikipedia.org/wiki/Final_Fantasy_XIV" target="_blank">Wikipedia</a><br/><a href="https://www.facebook.com/FinalFantasyXIV" target="_blank">Facebook</a><br/><a href="https://twitter.com/ff_xiv_en" target="_blank">Twitter</a><br/><a href="https://www.instagram.com/ffxiv" target="_blank">Instagram</a><br/><a href="https://www.twitch.tv/directory/game/FINAL%20FANTASY%20XIV%20Online" target="_blank">Twitch</a><br/></TD>
+							</TR>
+							<TR>
+								<TD>Tag</TD>
+								<TD></TD>
+							</TR>
+						</TABLE>
+					</div>
+				</div>
+				<div class="descriptiontitle">
+					<H3>Description</H3>
+				</div>
+				<div class="description">
+					For newcomers to FINAL FANTASY XIV Online, this edition includes three award-winning titles - FINAL FANTASY XIV: A Realm Reborn the base game, and the first and second expansions: FINAL FANTASY XIV: Heavensward and FINAL FANTASY XIV: Stormblood. This edition also includes a 30-day free play period*<br><br>Join over 27 million adventurers worldwide and take part in an epic and ever-changing FINAL FANTASY. Experience all the hallmarks of the best-selling franchise - an unforgettable story, exhilarating battles, and a myriad of diverse and captivating environments to explore.<br><br>Party up with friends or play solo! Experience all the main story dungeons on your own by calling upon NPC allies to fight by your side.<br><br><strong>Your journey takes you ever higher in FINAL FANTASY XIV: Heavensward:</strong><br>• Take your first steps in the reclusive nation of Ishgard, locked in a seemingly never-ending struggle with dragons.<br>• Three additional jobs: channel celestial magicks to heal your allies as the mystical Astrologian. Attack from afar using firearms and mechanical weaponry as the daring Machinist. Wield a mighty greatsword and the power of darkness as the valiant Dark Knight. <br><br><strong>Rekindle the fires of hope in FINAL FANTASY XIV: Stormblood: </strong><br>• Journey to the East and rise up against the might of the Garlean Empire.<br>• Two additional jobs: master the balance of martial and arcane arts as the rapier-wielding Red Mage. Draw your katana and let steel sing as the noble Samurai.<br><br><strong>IMPORTANT:</strong><br>• *The 30-day free play period included with purchase can only be applied once to each platform on a single service account.<br>• Square Enix Accounts registered to the FINAL FANTASY XIV Online Starter Edition will not be eligible for the FINAL FANTASY XIV Free Trial. Certain features currently contained in the FINAL FANTASY XIV Online Starter Edition, and additional content, may become available in the FINAL FANTASY XIV Free Trial in the future.<br>• All editions of the game require user registration. All editions of the game other than the Free Trial require an active paid subscription to play.<br>FINAL FANTASY XIV Online game packages available on Steam may only be registered and added on a Square Enix account that has the base game “FINAL FANTASY XIV Online Starter Edition&quot; (or formerly known as &quot;FINAL FANTASY XIV: A Realm Reborn”) purchased on Steam.<br>•  To view your 20 digit registration codes after purchase, simply right-click on “FINAL FANTASY XIV” in your Steam “Library” and select “View CD key” on the Steam client. The codes will always be accessible from this location should you ever need to reference them again.<br>•  The registration codes can be redeemed immediately on the Mog Station <a href="https://steamcommunity.com/linkfilter/?u=https%3A%2F%2Fsqex.to%2FMsp" target="_blank" rel=" noopener"  >https://sqex.to/Msp</a>. If this is your first time installing and registering &quot;FINAL FANTASY XIV Online&quot;, you may redeem your registration codes during the initial installation process.<br>• Age restrictions and other terms and conditions apply. Please refer to the User Agreement (<a href="https://steamcommunity.com/linkfilter/?u=https%3A%2F%2Fsqex.to%2Fffxiv_agreement" target="_blank" rel=" noopener"  >https://sqex.to/ffxiv_agreement</a>) and Square Enix Account Terms of Use (<a href="https://steamcommunity.com/linkfilter/?u=https%3A%2F%2Fsqex.to%2Fffxiv_terms" target="_blank" rel=" noopener"  >https://sqex.to/ffxiv_terms</a>) for the terms and conditions of registration and service. Please visit the FINAL FANTASY XIV website at <a href="https://steamcommunity.com/linkfilter/?u=https%3A%2F%2Fwww.finalfantasyxiv.com%2F" target="_blank" rel=" noopener"  >https://www.finalfantasyxiv.com/</a> for additional information.
+				</div>
+			</div>
+		</div>
+		<script src="https://cdn.jsdelivr.net/npm/lozad/dist/lozad.min.js"></script>
+		<script>
+			const observer = lozad(); // lazy loads elements with default selector as '.lozad'
+			observer.observe();
+		</script>
+	</body>	
+</html>

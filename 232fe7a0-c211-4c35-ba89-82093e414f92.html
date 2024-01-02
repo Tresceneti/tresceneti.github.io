@@ -1,0 +1,284 @@
+﻿<!DOCTYPE html>
+<html>
+	<head>
+		<title>JYDGE</title>
+		<meta name="viewport" content="width=device-width, initial-scale=0.55">
+		<style>
+body {
+  background: #24282f;                                /* main background color in case of no image */
+  font-family: 'Arial';                               /* font arial which should be readable */
+  Height:100%;                                        /* set width to 100% also needed for background */
+  margin:0px;                                         /* hide any margins */
+  background-size: cover;                             /* size background image without distortion along width and height */
+  background-repeat: no-repeat;                       /* no background repeat */
+  Background-attachment:fixed;                        /* needed to make background image behave properly */
+  overflow-y:hidden;                                  /* no normal overflow, only our containers (details & description) will overflow or have scrollbar * /
+}
+ 
+html {
+  height:100%;                                        /* need to set this to 100% to make the background behave propertly */
+}
+
+.title h2 {
+  padding-left: 25px;                                 /* left padding */
+  color: #ccc;                                        /* text color */
+  margin: 0;                                          /* no margins */
+  background-color: black;                            /* black background */
+  vertical-align: middle;                             /* align vertical middle */
+}
+
+.title img {
+	vertical-align: middle;                           /* images in title aligned vertical middle */
+}
+
+.title {
+	width: 100%;                                      /* title container width 100% */
+	grid-column: 1 / span 3;                          /* column 1 but spans 3 */
+    grid-row: 1;                                      /* row 1 */
+
+}
+.cards {                                              /* empty not used here */
+}
+
+.card {
+	display: grid;                                    /* container which is the grid */
+	grid-template-columns: min-content;               /* size columns to minimum content */
+	grid-template-rows: min-content min-content;      /* size rows to minimum content */
+	height: 100vh;                                    /* 100% viewport height */
+}
+
+.detailstitle{
+  grid-column: 1;                                     /* 1st column */
+  grid-row: 2;                                        /* 2nd row */
+  width: 350px;                                       /* fixed width set to same size as details */
+  padding-left: 10px;                                 /* some padding left */
+  padding-right: 10px;                                /* some padding right */
+}
+
+.details {
+  padding-left: 10px;                                 /* some padding left */
+  padding-right: 10px;                                /* some padding right */
+  color: #ccc;
+  grid-column: 1;                                      /* 1st column */
+  grid-row: 3;                                         /* 3rd row of grid */
+  width: 350px;                                        /* fixed width of details */
+  overflow-y: auto;                                     /* add vertical scrollbar if needed */
+  overflow-x:hidden;                                   /* don't overflow on x axis (no horz scrollbar) */
+ }
+ 
+.detailstitle h3,
+.descriptiontitle h3 {
+	border-bottom: 1px solid #ccc;                     /* titles of description details should have line under it */
+	padding: 5px;                                      /* add some padding */
+	color: #ccc;                                       /* text color of the titles */
+}
+
+.detailstable th, td {
+  border: 0px;                                         /* no borders on td, th elements */
+  color: #ccc;                                         /* details table text color */
+}
+
+.detailstable td {
+  text-align: left;                                    /* align text left */
+  vertical-align: top;                                 /* align top */
+}
+
+.detailstable {
+  width: 100%;                                         /* set to full width of details */
+  padding: 5px;                                        /* add some padding */
+}
+
+.details img {
+	max-width: 100%;                                   /* make sure images don't overflow in width on details */
+}
+
+.descriptiontitle {
+	grid-column: 2;                                    /* column 2 of grid */
+	grid-row: 2;                                       /* row 2 of grid */
+	padding-left: 10px;                                /* some padding left */
+	padding-right: 10px;                               /* some padding right */
+}
+
+
+.description {
+	color: #ccc;                                       /* text color */
+	grid-column: 2;                                    /* 2nd column of grid */
+	grid-row: 3;                                       /* 3rd row of grid */
+	overflow-y: auto;                                  /* overflow-y automatic (for adding scrollbar) */
+	overflow-x:hidden;                                 /* prevent horizontal scrollbar */
+	padding-left: 10px;                                /* some padding left */
+	padding-right: 10px;                               /* some padding right */
+}
+
+.description img {
+	max-width: 100%;                                   /* make sure images don't overflow in width to prevent scrollbars */
+}
+
+.MenuButton {
+  border: none;                                        /* Remove borders */
+  outline: none;                                       /* Remove outline */
+  background-color: #888;                              /* Set a background color */
+  color: #000;                                         /* Text color */
+  padding: 5px;                                        /* Some padding */
+  border-radius: 4px;                                  /* Rounded corners, border */
+  font-size: 20px;                                     /* Increase font size */
+  cursor:pointer;                                         /* Add a mouse pointer on hover */
+  margin-right: 20px;                                  /* to have some space on right side before next element */
+  -webkit-appearance: button;
+  -moz-appearance: button;
+  appearance: button;
+  text-decoration: none;
+}
+
+.MenuButton:hover {
+  background-color: #777;                              /* Add a dark-grey background on hover */
+  color: #CCC;                                         /* Text color */
+}
+
+a {
+ text-decoration: none;                                /* no text underline in links */
+}
+a:link {
+  color: #CCC;                                         /* unvisited link color */
+}
+a:visited {
+  color: #CCC;                                         /* visited link color */
+}
+a:hover {
+  color: #EEE;                                         /* mouse over link color */
+  text-decoration: underline;                          /* add text underline in links when mouse over */
+}
+a:active {
+  color: #CCC;                                         /* selected link color */
+}
+
+                                                       /* scrollbars W3C standard that is currently Firefox-only */
+* {
+  scrollbar-width: thin;                               /* small width */
+  scrollbar-color: #888 transparent;                   /* trackbar color + transparant background */
+}
+
+                                                       /* scrollbars on Chrome/Edge/Safari */
+*::-webkit-scrollbar {
+  width: 12px;                                         /* small width */
+}
+
+*::-webkit-scrollbar-track {
+  background: transparent;                             /* background color track */
+}
+
+*::-webkit-scrollbar-thumb {
+  background-color: #AAA;                              /* background */
+  border-radius: 20px;                                 /* rounded corner, border */
+  border: 3px solid #888;                              /* add the border */
+}
+
+		</style>
+	</head>
+	<body style="background-image: linear-gradient(to bottom, rgba(0,0,0,0.52), rgba(0,0,0,0.73)), url('232fe7a0-c211-4c35-ba89-82093e414f92/2a3ecc3c-f1f3-42f2-8ef1-6c54d02d7ab1.jpg');">
+		<div class="cards">
+			<div class="card">
+				<div class="title">
+					<h2><button onclick="window.history.back()" class="MenuButton">Back</button><img Height="48" class="lozad" data-src="232fe7a0-c211-4c35-ba89-82093e414f92/a72b9ac5-61ab-4d3d-876e-3038927e82f8.ico"/> JYDGE</h2>
+				</div>
+				<div class="detailstitle">
+				<H3>Details</H3>
+				</div>
+				<div class="details">
+					<div style="overflow: auto;">
+						<TABLE class="detailstable">
+							<col style="width:50%" />
+							<col style="width:50%" />
+							<TR>
+								<TD style="text-align:center" Colspan="2"><img Height="175" class="lozad" data-src="232fe7a0-c211-4c35-ba89-82093e414f92/b8288ad9-0eb5-4998-94dd-74e00fb572cf.jpg"/></TD>
+							</TR>
+							<TR>
+								<TD>Playtime</TD>
+								<TD>Not Played</TD>
+							</TR>
+							<TR>
+								<TD>Last Activity</TD>
+								<TD><a href="#quicklink-Never">Never</a> </TD>
+							</TR>
+							<TR>
+								<TD>Added</TD>
+								<TD><a href="#quicklink-12/30/2023">12/30/2023</a> 6:40:47</TD>
+							</TR>
+							<TR>
+								<TD>Modified</TD>
+								<TD><a href="#quicklink-12/30/2023">12/30/2023</a> 6:57:18</TD>
+							</TR>
+							<TR>
+								<TD>Completion Status</TD>
+								<TD><a href="#quicklink-Not Played">Not Played</a></TD>
+							</TR>
+							<TR>
+								<TD>Library</TD>
+								<TD><a href="#quicklink-Steam">Steam</a></TD>
+							</TR>
+							<TR>
+								<TD>Source</TD>
+								<TD><a href="#quicklink-Steam">Steam</a></TD>
+							</TR>
+							<TR>
+								<TD>Platform</TD>
+								<TD><a href="#quicklink-PC (Windows)">PC (Windows)</a><br/></TD>
+							</TR>
+							<TR>
+								<TD>Release Date</TD>
+								<TD><a href="#quicklink-10/3/2017">10/3/2017</a> </TD>
+							</TR>
+							<TR>
+								<TD>Community Score</TD>
+								<TD><a href="#quicklink-80">80</a></TD>
+							</TR>
+							<TR>
+								<TD>Critic Score</TD>
+								<TD><a href="#quicklink-79">79</a></TD>
+							</TR>
+							<TR>
+								<TD>User Score</TD>
+								<TD><a href="#quicklink-"></a></TD>
+							</TR>
+							<TR>
+								<TD>Genre</TD>
+								<TD><a href="#quicklink-Arcade">Arcade</a><br/><a href="#quicklink-Indie">Indie</a><br/><a href="#quicklink-Role-playing (RPG)">Role-playing (RPG)</a><br/><a href="#quicklink-Shooter">Shooter</a><br/><a href="#quicklink-Simulator">Simulator</a><br/><a href="#quicklink-Strategy">Strategy</a><br/><a href="#quicklink-Tactical">Tactical</a><br/></TD>
+							</TR>
+							<TR>
+								<TD>Developer</TD>
+								<TD><a href="#quicklink-10tons Ltd.">10tons Ltd.</a><br/></TD>
+							</TR>
+							<TR>
+								<TD>Publisher</TD>
+								<TD><a href="#quicklink-10tons">10tons</a><br/><a href="#quicklink-10tons Ltd.">10tons Ltd.</a><br/></TD>
+							</TR>
+							<TR>
+								<TD>Feature</TD>
+								<TD><a href="#quicklink-Co-Operative">Co-Operative</a><br/><a href="#quicklink-Multiplayer">Multiplayer</a><br/><a href="#quicklink-Single Player">Single Player</a><br/></TD>
+							</TR>
+							<TR>
+								<TD>Links</TD>
+								<TD><a href="https://store.steampowered.com/app/654050" target="_blank">Steam</a><br/><a href="https://itunes.apple.com/us/app/jydge/id1212865786?mt=8&uo=4" target="_blank">iPhone</a><br/><a href="https://play.google.com/store/apps/details?id=com.the10tons.jydge&hl=en&gl=us" target="_blank">Android</a><br/><a href="https://www.gog.com/game/jydge" target="_blank">GOG</a><br/><a href="https://en.wikipedia.org/wiki/Jydge" target="_blank">Wikipedia</a><br/><a href="http://itunes.apple.com/us/app/id1212865786#?platform=ipad" target="_blank">iPad</a><br/><a href="http://www.jydge.com/" target="_blank">Official</a><br/><a href="https://www.twitch.tv/directory/game/JYDGE" target="_blank">Twitch</a><br/><a href="https://store.epicgames.com/en-US/p/jydge-14242d" target="_blank">Epic</a><br/><a href="https://discord.gg/10tons" target="_blank">Discord</a><br/></TD>
+							</TR>
+							<TR>
+								<TD>Tag</TD>
+								<TD></TD>
+							</TR>
+						</TABLE>
+					</div>
+				</div>
+				<div class="descriptiontitle">
+					<H3>Description</H3>
+				</div>
+				<div class="description">
+					<strong>Build your JYDGE. Enter Edenbyrg. Get out alive.</strong><br><br><img src="https://cdn.akamai.steamstatic.com/steam/apps/654050/extras/three-jydges-ratings.jpg?t=1666993806" /><br><br><strong>Build your own cybernetic JYDGE in this lawful-but-awful roguehate top-down shooter</strong> where you get to eradicate crime in the never-sleeping megacity of Edenbyrg. Create your own play-style by augmenting your JYDGE, modifying your <strong>Gavel</strong> rifle, and choosing fearless companions to suit the tasks at hand. Go solo or team up with Co-JYDGE in shared screen local co-op.<br><br>Will you be <strong>stealthy</strong> and lurk in shadows? Or will you <strong>assault</strong> the evildoers head on? Maybe you'll <strong>brutally rocket</strong> them to bits from a distance? Or perhaps bring your own squad of reckless <strong>companions</strong> to solve the scenarios?<br><br><img src="https://cdn.akamai.steamstatic.com/steam/apps/654050/extras/steam-caption-jydge.png?t=1666993806" /><br><img src="https://cdn.akamai.steamstatic.com/steam/apps/654050/extras/jydge-enhanced.png?t=1666993806" /><br><br><strong>BILLIONS</strong> of different game altering combinations enable you to find tools to fit your playstyle.<br><br>Use <strong>STEALTH</strong> augmentations to sneak silently in shadows. Make yourself <strong>GIANT</strong> and hurl perps around. Make yourself tiny and fit through smaller cracks. Or combine augmentations: make yourself a tiny giant. Up to you.<br><br><br><img src="https://cdn.akamai.steamstatic.com/steam/apps/654050/extras/steam-caption-gavel.png?t=1666993806" /><br><img src="https://cdn.akamai.steamstatic.com/steam/apps/654050/extras/jydges-gavel.png?t=1666993806" /><br><br>Deal <strong>sweet ruthless Jystice</strong> with your ultra-versatile and moddable weapon of the law.<br><br>§ Fire <strong>lead, lasers</strong>, and <strong>electricity</strong> modified with dozens of game changing effects.<br><br>§ Persuade the perps to join your side with &quot;<strong>Persuade or Die</strong>&quot; mod.<br><br>§ Fire <strong>rockets</strong> in the general direction of the enemy and hear that kneecap split from a distance.<br><br>§ Use <strong>Dynamite Gavel</strong> mod to powerslam through walls and explode-gib the foes with a swift blow to the brain stem. Observe the wrongdoer's eye pop out of its socket.<br><br>§ Smell the burning criminal flesh using the <strong>Flaming Plasma</strong> mod or just gently knock them unconscious with the Sandman mod.<br><br>Your Gavel, your Law.<br><br><img src="https://cdn.akamai.steamstatic.com/steam/apps/654050/extras/steam-caption-edenbyrg.png?t=1666993806" /><br><img src="https://cdn.akamai.steamstatic.com/steam/apps/654050/extras/edenbyrg-crime-map.png?t=1666993806" /><br><br>The filthy stench of crime has taken over <strong>Edenbyrg</strong>. But do not fall into despair, the lawful but awful JYDGEs are designed to swiftly correct all lawless behavior.<br><br>Bank robbers have fortified themselves into the MegaBank. There are four ways into the bank, but only one way out of the vault. How will you proceed?<br><br>Several Cobra Gang members have taken the Flanders family hostage. They need to be rescued. Preferably alive. Your move.<br><br>The darkest rain-beaten alleys of Edenbyrg also tell a rumor that someone is building a death machine. Something big and especially designed for taking out JYDGEs. Arm yourself!<br><br><img src="https://cdn.akamai.steamstatic.com/steam/apps/654050/extras/steam-caption-medals.png?t=1666993806" /><br><img src="https://cdn.akamai.steamstatic.com/steam/apps/654050/extras/steam-medal-gallery.png?t=1666993806" /><br><br>How to complete the scenario without firing a single shot? Under 15 seconds? Without being seen? With EVERYONE dead? With EVERYONE alive?<br><br>Your heroism and extraordinary feats will be rewarded with shiny Medals. Medals unlock delicious new cyberware, weapon mods, fire modes, special weapons, and more.<br><br>What is the best combination of cyberware and weapon mods to achieve the medals in different scenarios?<br><br>Who be the JYDGE?<br><br><img src="https://cdn.akamai.steamstatic.com/steam/apps/654050/extras/steam-caption-you-jydge.png?t=1666993806" />
+				</div>
+			</div>
+		</div>
+		<script src="https://cdn.jsdelivr.net/npm/lozad/dist/lozad.min.js"></script>
+		<script>
+			const observer = lozad(); // lazy loads elements with default selector as '.lozad'
+			observer.observe();
+		</script>
+	</body>	
+</html>
